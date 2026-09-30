@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style.css">
+
+    <title>LEXO SkyCast — India Weather</title>
+
+</head>
+
+<body>
+
+    <div class="app">
+
+        <header>
+
+            <div class="logo">
+                LEXO
+                <span class="check">✓</span>
+                <span class="sky">SkyCast</span>
+            </div>
+
+            <div class="top-actions">
+
+                <button
+                    class="icon-btn"
+                    id="unitBtn"
+                    title="Change temperature unit"
+                >
+                    °F
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- SEARCH -->
+
+        <div class="search-area">
+
+            <div class="search-box">
+
+                <span class="search-icon">🔎</span>
+
+                <input
+                    id="cityInput"
+                    type="text"
+                    placeholder="Search any Indian city, town or village..."
+                    autocomplete="off"
+                >
+
+                <div
+                    id="suggestions"
+                    class="suggestions"
+                ></div>
+
+            </div>
+
+            <button
+                class="search-btn"
+                id="searchBtn"
+            >
+                Search
+            </button>
+
+            <button
+                class="location-btn"
+                id="locationBtn"
+            >
+                📍 My Location
+            </button>
+
+        </div>
+
+
+        <!-- ERROR -->
+
+        <div
+            class="error"
+            id="error"
+        ></div>
+
+
+        <!-- LOADING -->
+
+        <div
+            class="loading"
+            id="loading"
+        >
+
+            <div class="spinner"></div>
+
+            <p style="margin-top:15px">
+                Loading weather...
+            </p>
+
+        </div>
+
+
+        <!-- WEATHER -->
+
+        <main
+            id="weatherApp"
+            style="display:none"
+        >
+
+            <section class="current">
+
+                <div class="card main-weather">
+
+    <img
+    id="weatherBackground"
+    class="weather-bg"
+    src="weather-bg.png"
+    alt="Weather background"
+>
+
+    <div class="location">
+
+        📍
+
+        <span id="locationName">
+            Loading...
+        </span>
+
+    </div>
+
+    <div
+        class="date"
+        id="currentDate"
+    ></div>
+
+    <div class="temperature">
+
+        <div
+            class="weather-icon"
+            id="mainIcon"
+        >
+            ☀️
+        </div>
+
+        <div>
+
+            <div class="temp">
+
+                <span id="temperature">
+                    --
+                </span>
+
+                <span class="unit">
+                    °C
+                </span>
+
+            </div>
+
+            <div
+                class="condition"
+                id="condition"
+            >
+                --
+            </div>
+
+            <div
+                class="feels"
+                id="feels"
+            >
+                Feels like --
+            </div>
+
+        </div>
+
+    </div>
+
+                </div>
+
+                <div class="card details">
+
+                    <div class="detail">
+
+                        <div class="detail-icon">💧</div>
+
+                        <div class="detail-label">
+                            Humidity
+                        </div>
+
+                        <div
+                            class="detail-value"
+                            id="humidity"
+                        >
+                            --
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <div class="detail-icon">💨</div>
+
+                        <div class="detail-label">
+                            Wind
+                        </div>
+
+                        <div
+                            class="detail-value"
+                            id="wind"
+                        >
+                            --
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <div class="detail-icon">🌧️</div>
+
+                        <div class="detail-label">
+                            Precipitation
+                        </div>
+
+                        <div
+                            class="detail-value"
+                            id="precip"
+                        >
+                            --
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <div class="detail-icon">👁️</div>
+
+                        <div class="detail-label">
+                            Visibility
+                        </div>
+
+                        <div
+                            class="detail-value"
+                            id="visibility"
+                        >
+                            --
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <div class="detail-icon">🧭</div>
+
+                        <div class="detail-label">
+                            Wind Direction
+                        </div>
+
+                        <div
+                            class="detail-value"
+                            id="windDirection"
+                        >
+                            --
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <div class="detail-icon">🌡️</div>
+
+                        <div class="detail-label">
+                            Pressure
+                        </div>
+
+                        <div
+                            class="detail-value"
+                            id="pressure"
+                        >
+                            --
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- HOURLY -->
+
+            <section class="section">
+
+                <h2 class="section-title">
+                    Hourly Forecast
+                </h2>
+
+                <div
+                    class="hourly"
+                    id="hourly"
+                ></div>
+
+            </section>
+
+
+            <!-- DAILY -->
+
+            <section class="section">
+
+                <h2 class="section-title">
+                    7-Day Forecast
+                </h2>
+
+                <div
+                    class="daily"
+                    id="daily"
+                ></div>
+
+            </section>
+
+
+            <!-- SUNRISE -->
+
+            <section class="section">
+
+                <h2 class="section-title">
+                    Sun & Daylight
+                </h2>
+
+                <div class="sun-grid">
+
+                    <div class="sun-card">
+
+                        <div class="sun-icon">
+                            🌅
+                        </div>
+
+                        <h3>
+                            Sunrise
+                        </h3>
+
+                        <p id="sunrise">
+                            --
+                        </p>
+
+                    </div>
+
+
+                    <div class="sun-card">
+
+                        <div class="sun-icon">
+                            🌇
+                        </div>
+
+                        <h3>
+                            Sunset
+                        </h3>
+
+                        <p id="sunset">
+                            --
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+
+        <footer>
+            LEXO SkyCast · Weather data powered by Open-Meteo
+        </footer>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
